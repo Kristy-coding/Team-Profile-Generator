@@ -1,22 +1,145 @@
 // runs the application 
 //ask questions with inquirer and get data 
 
+// import inquirer and costructors 
 
-//WHEN I start the application - I initialize the app with start script
+const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Inern = require('./lib/Intern');
+const Employee = require('./lib/Employee');
 
-// THEN I am presented with a menu with the option to choose a type of employee (manager, engineer, intern)
 
-// WHEN  I select the manager option 
-// THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+// I initialize the app with "npm start"
 
-// WHEN I enter the team manager’s name, employee ID, email address, and office number    
-// THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+
+
+// THEN I am presented with a menu with the option to choose a type of employee (manager, engineer, intern, or finsihed building my team)
+
+
+
+var promptUser = function () {
+
+    return inquirer .prompt({
+        type: 'list',
+        message: 'Which employee role would you like to add to your team?',
+        name: 'menu',
+        choices: ['Manager','Engineer','Intern','finished buildig my team']
+    })
+    //.then takes in two parameters (the data returned from the promise, and the fucntion to be run on that data)
+    .then (({menu}) => {
+        // WHEN  I select the manager option 
+        if (menu === 'Manager') {
+            // THEN I am prompted to enter the manager's name, employee ID, email address, and office number
+            inquirer.prompt([
+                { 
+                    type: 'input',
+                    name: 'name',
+                    message: `What is the ${menu}'s name?` 
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: `What is the ${menu}'s id number?`
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: `What is the ${menu}'s email address?`
+                },
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: `What is the ${menu}'s office number?`
+                }
+            ]).then (({name,id,email,officeNumber}) => {
+                    
+                const manager = new Manager (name,id,email,officeNumber);
+                
+                console.log(manager);
+
+                //return to the top of promptUser function 
+                return promptUser();       
+             })
+        }
+        if (menu === 'Engineer') {
+                // WHEN I select the engineer option
+                // THEN I am prompted to enter the engineer’s name, ID, email, and GitHub
+                inquirer.prompt([
+                    { 
+                        type: 'input',
+                        name: 'name',
+                        message: `What is the ${menu}'s name?` 
+                    },
+                    {
+                        type: 'input',
+                        name: 'id',
+                        message: `What is the ${menu}'s id number?`
+                    },
+                    {
+                        type: 'input',
+                        name: 'email',
+                        message: `What is the ${menu}'s email address?`
+                    },
+                    {
+                        type: 'input',
+                        name: 'github',
+                        message: `What is the ${menu}'s github username?`
+                    }
+                ]).then (({name,id,email,github}) => {
+                        
+                    const engineer = new Engineer (name,id,email,github);
+                    
+                    console.log(engineer);
     
-// WHEN I select the engineer option
-// THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu (while loop or recursion when you call the function whith in the function to get bakc to top of menu)
+                    //return to the top of promptUser function 
+                    return promptUser();       
+                })
+        if (menu === 'Intern') {
+            // WHEN I select the intern option
+            // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu 
+            inquirer.prompt([
+                { 
+                    type: 'input',
+                    name: 'name',
+                    message: `What is the ${menu}'s name?` 
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: `What is the ${menu}'s id number?`
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: `What is the ${menu}'s email address?`
+                },
+                {
+                    type: 'input',
+                    name: 'github',
+                    message: `What school is the ${menu} attending?`
+                }
+                ]).then (({name,id,email,school}) => {
+                            
+                    const intern = new Intern (name,id,email,school);
+                        
+                    console.log(intern);
+        
+                    //return to the top of promptUser function 
+                    return promptUser();       
+                })
+        }                 
 
-// WHEN I select the intern option
-// THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu (while loop or recursion when you call the function whith in the function to get bakc to top of menu)
+        } if(menu === 'finished buildig my team') {
 
-// WHEN I decide to finish building my team
-// THEN I exit the application, and the HTML is generated
+            // WHEN I decide to finish building my team
+            // THEN I exit the application, and the HTML is generated
+            return
+            //generate html
+        }
+
+    })
+
+};
+
+promptUser();
