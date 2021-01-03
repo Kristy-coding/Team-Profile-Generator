@@ -6,8 +6,11 @@
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
-const Inern = require('./lib/Intern');
+const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
+
+//import html page template 
+//const createPageTemplate = require('./src/page-template')
 
 
 // I initialize the app with "npm start"
@@ -35,17 +38,41 @@ var promptUser = function () {
                 { 
                     type: 'input',
                     name: 'name',
-                    message: `What is the ${menu}'s name?` 
+                    message: `What is the ${menu}'s name?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s name!`);
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'id',
-                    message: `What is the ${menu}'s id number?`
+                    message: `What is the ${menu}'s id number?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s id number!`);
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: `What is the ${menu}'s email address?`
+                    message: `What is the ${menu}'s email address?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s email address!`);
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
@@ -56,6 +83,7 @@ var promptUser = function () {
                     
                 const manager = new Manager (name,id,email,officeNumber);
                 
+                // push manager into an array of employees?
                 console.log(manager);
 
                 //return to the top of promptUser function 
@@ -69,17 +97,41 @@ var promptUser = function () {
                     { 
                         type: 'input',
                         name: 'name',
-                        message: `What is the ${menu}'s name?` 
+                        message: `What is the ${menu}'s name?`,
+                        validate: Input => {
+                            if (Input){
+                                return true;
+                            } else {
+                                console.log(`Please enter the ${menu}'s name!`);
+                                return false;
+                            }
+                        } 
                     },
                     {
                         type: 'input',
                         name: 'id',
-                        message: `What is the ${menu}'s id number?`
+                        message: `What is the ${menu}'s id number?`,
+                        validate: Input => {
+                            if (Input){
+                                return true;
+                            } else {
+                                console.log(`Please enter the ${menu}'s id number!`);
+                                return false;
+                            }
+                        }
                     },
                     {
                         type: 'input',
                         name: 'email',
-                        message: `What is the ${menu}'s email address?`
+                        message: `What is the ${menu}'s email address?`,
+                        validate: Input => {
+                            if (Input){
+                                return true;
+                            } else {
+                                console.log(`Please enter the ${menu}'s email address!`);
+                                return false;
+                            }
+                        }
                     },
                     {
                         type: 'input',
@@ -90,56 +142,90 @@ var promptUser = function () {
                         
                     const engineer = new Engineer (name,id,email,github);
                     
+                    //push engineer into an array of employees?
                     console.log(engineer);
     
                     //return to the top of promptUser function 
                     return promptUser();       
                 })
-        if (menu === 'Intern') {
+            } if (menu === 'Intern') {
             // WHEN I select the intern option
             // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu 
             inquirer.prompt([
                 { 
                     type: 'input',
                     name: 'name',
-                    message: `What is the ${menu}'s name?` 
+                    message: `What is the ${menu}'s name?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s name!`);
+                            return false;
+                        }
+                    } 
                 },
                 {
                     type: 'input',
                     name: 'id',
-                    message: `What is the ${menu}'s id number?`
+                    message: `What is the ${menu}'s id number?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s id number!`);
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: `What is the ${menu}'s email address?`
+                    message: `What is the ${menu}'s email address?`,
+                    validate: Input => {
+                        if (Input){
+                            return true;
+                        } else {
+                            console.log(`Please enter the ${menu}'s email address!`);
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
-                    name: 'github',
+                    name: 'school',
                     message: `What school is the ${menu} attending?`
                 }
                 ]).then (({name,id,email,school}) => {
                             
                     const intern = new Intern (name,id,email,school);
-                        
+                    
+                    //push intern into an array of employees
                     console.log(intern);
         
                     //return to the top of promptUser function 
                     return promptUser();       
                 })
-        }                 
-
         } if(menu === 'finished buildig my team') {
 
             // WHEN I decide to finish building my team
             // THEN I exit the application, and the HTML is generated
             return
-            //generate html
+            // call generate html createPageTemplate??
         }
 
     })
 
 };
 
-promptUser();
+promptUser()
+//     .then(employeeData => {
+//     console.log(employeeData)
+// }) 
+//   .then (employeeData => {
+//     console.log(employeeData);
+//      return createPageTemplate(employeeData)
+//  })
+// .then (pageTemplate => {
+//  return writeFile(pageTemplate)
+// })
