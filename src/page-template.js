@@ -12,43 +12,46 @@
 //************ 
 // loop through array of employee objects and generate page????
 
-const generateProfile = function(employeeType) {
-    if (employeeType === 'Manager'||'manager') {
+
+
+const generateProfile = function(employee) {
+     console.log(employee.getRole())
+    if (employee.getRole() === 'Manager') {
         return `
         <!-- column 1 manager-->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card mb-5 mx-auto" style="width: 18rem;">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title">${employeeType.name}</h5>
+                    <h5 class="card-title">${employee.name}</h5>
                     <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-mug-hot p-1"></i>Manager</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush border border-grey">
-                        <li class="list-group-item">ID: ${employeeType.id}</li>
-                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employeeType.email}</a></li>
-                        <li class="list-group-item">Office Number:${employeeType.officeNumber} </li>
+                        <li class="list-group-item">ID: ${employee.id}</li>
+                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
+                        <li class="list-group-item">Office Number:${employee.officeNumber} </li>
                     </ul>
                 </div>
               </div>
         </div>
         <!-- column 1 manager end -->
         
-        `
+         `
     }
-    if (employeeType === 'Engineer' ||'engineer') {
+    if (employee.getRole() === 'Engineer') {
         return `
         <!-- Engineer column start-->
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card mb-5 mx-auto" style="width: 18rem;">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title">${employeeType.name}</h5>
+                        <h5 class="card-title">${employee.name}</h5>
                         <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-glasses p-1"></i>Engineer</h6>
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush border border-grey">
-                            <li class="list-group-item">ID:${employeeType.id}</li>
-                            <li class="list-group-item">Email:<a href="#" class="card-link"> ${employeeType.email}</a></li>
-                            <li class="list-group-item">GitHub:<a href="#" class="card-link"> ${employeeType.github}</a></li>    
+                            <li class="list-group-item">ID:${employee.id}</li>
+                            <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
+                            <li class="list-group-item">GitHub:<a href="#" class="card-link"> ${employee.github}</a></li>    
                         </ul>
                     </div>
                   </div>
@@ -56,21 +59,21 @@ const generateProfile = function(employeeType) {
             <!-- Engineer column end-->
         `
     }
-    if (employeeType === 'Intern' ||'intern') {
+    if (employee.getRole() === 'Intern') {
         
         return `
         <!-- intern column start -->
         <div class="col-lg-4  col-md-6 col-sm-12">
             <div class="card mb-5 mx-auto" style="width: 18rem;">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title">${employeeType.name}</h5>
+                    <h5 class="card-title">${employee.name}</h5>
                     <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-user-graduate p-1"></i>Intern</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush border border-grey">
-                        <li class="list-group-item">ID: ${employeeType.id}</li>
-                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employeeType.email}</a></li>
-                        <li class="list-group-item">School:${employeeType.school}</li>    
+                        <li class="list-group-item">ID: ${employee.id}</li>
+                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
+                        <li class="list-group-item">School:${employee.school}</li>    
                     </ul>
                 </div>
               </div>
@@ -81,7 +84,7 @@ const generateProfile = function(employeeType) {
 }
 
 // ***** this should be an employee obj array???
-const createPageTemplate = function(employeeObj) {
+const createPageTemplate = function(employeeArr) {
 return `
 <!DOCTYPE html>
 <html lang="en">
@@ -99,8 +102,8 @@ return `
         <div class="row justify-content-center">
         <header class="col-12 p-5 mb-5 text-center bg-danger text-white"><h3>My Team</h3></header>
 
-        // if array.length is greater than length of employee array then genereate profiles????
-            ${generateProfile(employeeObj)}
+        
+            ${ employeeArr.map(employee => generateProfile(employee)).join('')}
         </div>
     </div>
 </body>
@@ -108,5 +111,6 @@ return `
     `
 
 }
+
 
 module.exports = createPageTemplate

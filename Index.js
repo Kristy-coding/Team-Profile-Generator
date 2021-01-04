@@ -8,6 +8,10 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
+const createPageTemplate = require('./src/page-template');
+const writeFile = require('./utils/generate-site');
+
+const employeeArr = [];
 
 //import html page template 
 //const createPageTemplate = require('./src/page-template')
@@ -27,7 +31,7 @@ var promptUser = function () {
         type: 'list',
         message: 'Which employee role would you like to add to your team?',
         name: 'menu',
-        choices: ['Manager','Engineer','Intern','finished buildig my team']
+        choices: ['Manager','Engineer','Intern','finished building my team']
     })
     //.then takes in two parameters (the data returned from the promise, and the fucntion to be run on that data)
     .then (({menu}) => {
@@ -83,7 +87,10 @@ var promptUser = function () {
                     
                 const manager = new Manager (name,id,email,officeNumber);
                 
+
                 // push manager into an array of employees?
+
+                employeeArr.push(manager);
                 console.log(manager);
 
                 //return to the top of promptUser function 
@@ -143,6 +150,7 @@ var promptUser = function () {
                     const engineer = new Engineer (name,id,email,github);
                     
                     //push engineer into an array of employees?
+                    employeeArr.push(engineer);
                     console.log(engineer);
     
                     //return to the top of promptUser function 
@@ -201,17 +209,21 @@ var promptUser = function () {
                     const intern = new Intern (name,id,email,school);
                     
                     //push intern into an array of employees
+                    employeeArr.push(intern);
                     console.log(intern);
         
                     //return to the top of promptUser function 
                     return promptUser();       
                 })
-        } if(menu === 'finished buildig my team') {
-
+        } if(menu === 'finished building my team') {
+            console.log(employeeArr)
             // WHEN I decide to finish building my team
             // THEN I exit the application, and the HTML is generated
-            return
-            // call generate html createPageTemplate??
+             
+            const html = (createPageTemplate(employeeArr));
+            
+            writeFile(html).then(response => {console.log(response.message)}).catch(err =>{console.log(err)})
+            
         }
 
     })
@@ -219,13 +231,3 @@ var promptUser = function () {
 };
 
 promptUser()
-//     .then(employeeData => {
-//     console.log(employeeData)
-// }) 
-//   .then (employeeData => {
-//     console.log(employeeData);
-//      return createPageTemplate(employeeData)
-//  })
-// .then (pageTemplate => {
-//  return writeFile(pageTemplate)
-// })
