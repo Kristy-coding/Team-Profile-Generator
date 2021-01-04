@@ -15,7 +15,7 @@
 
 
 const generateProfile = function(employee) {
-     console.log(employee.getRole())
+     //console.log(employee.getRole())
     if (employee.getRole() === 'Manager') {
         return `
         <!-- column 1 manager-->
@@ -28,7 +28,7 @@ const generateProfile = function(employee) {
                 <div class="card-body">
                     <ul class="list-group list-group-flush border border-grey">
                         <li class="list-group-item">ID: ${employee.id}</li>
-                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
+                        <li class="list-group-item">Email:<a href="mailto:${employee.email}" target="_blank" rel="noopener noreferrer" class="card-link"> ${employee.email}</a></li>
                         <li class="list-group-item">Office Number:${employee.officeNumber} </li>
                     </ul>
                 </div>
@@ -50,8 +50,8 @@ const generateProfile = function(employee) {
                     <div class="card-body">
                         <ul class="list-group list-group-flush border border-grey">
                             <li class="list-group-item">ID:${employee.id}</li>
-                            <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
-                            <li class="list-group-item">GitHub:<a href="#" class="card-link"> ${employee.github}</a></li>    
+                            <li class="list-group-item">Email:<a href="mailto:${employee.email}" target="_blank" rel="noopener noreferrer" class="card-link"> ${employee.email}</a></li>
+                            <li class="list-group-item">GitHub:<a href="https://github.com/${employee.github}" target="_blank" class="card-link"> ${employee.github}</a></li>    
                         </ul>
                     </div>
                   </div>
@@ -72,8 +72,8 @@ const generateProfile = function(employee) {
                 <div class="card-body">
                     <ul class="list-group list-group-flush border border-grey">
                         <li class="list-group-item">ID: ${employee.id}</li>
-                        <li class="list-group-item">Email:<a href="#" class="card-link"> ${employee.email}</a></li>
-                        <li class="list-group-item">School:${employee.school}</li>    
+                        <li class="list-group-item">Email:<a href="mailto:${employee.email}" target="_blank" rel="noopener noreferrer" class="card-link"> ${employee.email}</a></li>
+                        <li class="list-group-item">School: ${employee.school}</li>    
                     </ul>
                 </div>
               </div>
@@ -102,7 +102,8 @@ return `
         <div class="row justify-content-center">
         <header class="col-12 p-5 mb-5 text-center bg-danger text-white"><h3>My Team</h3></header>
 
-        
+        <!-- loop over employee arrray and generate profile for each employee -->
+        <!-- using .map we are looping over teh employee array and and sending each employee to generateProfile(), once the html is created for each we are .join() all those html template strings to create the completed html temmplet -->
             ${ employeeArr.map(employee => generateProfile(employee)).join('')}
         </div>
     </div>

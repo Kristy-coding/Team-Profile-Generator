@@ -88,10 +88,10 @@ var promptUser = function () {
                 const manager = new Manager (name,id,email,officeNumber);
                 
 
-                // push manager into an array of employees?
+                // push manager into employee array 
 
                 employeeArr.push(manager);
-                console.log(manager);
+                //console.log(manager);
 
                 //return to the top of promptUser function 
                 return promptUser();       
@@ -149,9 +149,9 @@ var promptUser = function () {
                         
                     const engineer = new Engineer (name,id,email,github);
                     
-                    //push engineer into an array of employees?
+                    //push engineer into employee array
                     employeeArr.push(engineer);
-                    console.log(engineer);
+                    //console.log(engineer);
     
                     //return to the top of promptUser function 
                     return promptUser();       
@@ -208,18 +208,19 @@ var promptUser = function () {
                             
                     const intern = new Intern (name,id,email,school);
                     
-                    //push intern into an array of employees
+                    //push intern into employee array
                     employeeArr.push(intern);
-                    console.log(intern);
+                    //console.log(intern);
         
                     //return to the top of promptUser function 
                     return promptUser();       
                 })
         } if(menu === 'finished building my team') {
-            console.log(employeeArr)
+           // console.log(employeeArr)
             // WHEN I decide to finish building my team
             // THEN I exit the application, and the HTML is generated
              
+            //call createPageTemplate with the employeeArr data 
             const html = (createPageTemplate(employeeArr));
             
             writeFile(html).then(response => {console.log(response.message)}).catch(err =>{console.log(err)})

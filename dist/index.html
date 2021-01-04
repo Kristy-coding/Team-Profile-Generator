@@ -15,20 +15,21 @@
         <div class="row justify-content-center">
         <header class="col-12 p-5 mb-5 text-center bg-danger text-white"><h3>My Team</h3></header>
 
-        
+        <!-- loop over employee arrray and generate profile for each employee -->
+        <!-- using .map we are looping over teh employee array and and sending each employee to generateProfile(), once the html is created for each we are .join() all those html template strings to create the completed html temmplet -->
             
         <!-- column 1 manager-->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card mb-5 mx-auto" style="width: 18rem;">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title">fjdks</h5>
+                    <h5 class="card-title">Sarah</h5>
                     <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-mug-hot p-1"></i>Manager</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush border border-grey">
-                        <li class="list-group-item">ID: fjdksl</li>
-                        <li class="list-group-item">Email:<a href="#" class="card-link"> jkds</a></li>
-                        <li class="list-group-item">Office Number:4 </li>
+                        <li class="list-group-item">ID: 1153</li>
+                        <li class="list-group-item">Email:<a href="mailto:sarah@gmail.com" target="_blank" rel="noopener noreferrer" class="card-link"> sarah@gmail.com</a></li>
+                        <li class="list-group-item">Office Number:5 </li>
                     </ul>
                 </div>
               </div>
@@ -36,6 +37,42 @@
         <!-- column 1 manager end -->
         
          
+        <!-- Engineer column start-->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card mb-5 mx-auto" style="width: 18rem;">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title">Dave</h5>
+                        <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-glasses p-1"></i>Engineer</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush border border-grey">
+                            <li class="list-group-item">ID:998</li>
+                            <li class="list-group-item">Email:<a href="mailto:dave@gmail.com" target="_blank" rel="noopener noreferrer" class="card-link"> dave@gmail.com</a></li>
+                            <li class="list-group-item">GitHub:<a href="https://github.com/kristy-coding" target="_blank" class="card-link"> kristy-coding</a></li>    
+                        </ul>
+                    </div>
+                  </div>
+            </div>
+            <!-- Engineer column end-->
+        
+        <!-- intern column start -->
+        <div class="col-lg-4  col-md-6 col-sm-12">
+            <div class="card mb-5 mx-auto" style="width: 18rem;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title">Julius</h5>
+                    <h6 class="card-subtitle mb-2 text-white"><i class="fas fa-user-graduate p-1"></i>Intern</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush border border-grey">
+                        <li class="list-group-item">ID: 1143</li>
+                        <li class="list-group-item">Email:<a href="mailto:jman@gmail.com" target="_blank" rel="noopener noreferrer" class="card-link"> jman@gmail.com</a></li>
+                        <li class="list-group-item">School: Harvard</li>    
+                    </ul>
+                </div>
+              </div>
+        </div>
+        <!-- intern column end -->
+        
         </div>
     </div>
 </body>
